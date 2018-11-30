@@ -78,6 +78,10 @@ $(function() {
 
             expect(bodyEl.classList.contains('menu-hidden')).toBe(false);
 
+            menuEl.click();
+
+            expect(bodyEl.classList.contains('menu-hidden')).toBe(true);
+
         });
     });
 
