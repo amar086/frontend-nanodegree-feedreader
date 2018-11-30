@@ -36,7 +36,7 @@ $(function() {
             expect(feed.url).toBeDefined();
             expect(feed.url).not.toBe('');
            }
-        })
+        });
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
@@ -47,7 +47,7 @@ $(function() {
             expect(feed.name).toBeDefined();
             expect(feed.name).not.toBe('');
           }
-        })
+        });
     });
 
 
@@ -60,12 +60,25 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+        it('should be hidden by default', function() {
+            const bodyEl = document.querySelector('body');
+            expect(bodyEl.classList.contains('menu-hidden')).toBe(true);
+        });
 
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+        it('should change visibility', function() {
+            const bodyEl = document.querySelector('body');
+            const menuEl = document.querySelector('.menu-icon-link');
+
+            menuEl.click();
+
+            expect(bodyEl.classList.contains('menu-hidden')).toBe(false);
+
+        });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -78,13 +91,15 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-
+    });
     /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
 
+    });
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-    });
+
 
 }());
