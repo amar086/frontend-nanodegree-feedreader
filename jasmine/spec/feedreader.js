@@ -93,8 +93,8 @@ $(function() {
         });
 
         it('should have at least a single entry element', function(done) {
-            const feedCont = document.querySelector('.feed');
-            expect(feedCont.children.length > 0).toBe(true);
+            const feedChildren = document.querySelector('.feed').querySelectorAll('.entry');
+            expect(feedChildren != null && feedChildren.length > 0).toBe(true);
             done();
         });
     });
@@ -103,21 +103,22 @@ $(function() {
          const firstFeeds = [];
 
         beforeEach(function(done) {
-            loadFeed(1);
-            const firstFeedCont = document.querySelector('.feed');
-            for(let feed of firstFeedCont.children) {
-               firstFeeds.push(feed.innerHTML);
-            }
-            loadFeed(2, done);
+            loadFeed(1, function(){
+                const firstFeedCont = document.querySelector('.feed');
+                for(let feed of firstFeedCont.children) {
+                   firstFeeds.push(feed.innerHTML);
+                }
+                loadFeed(2, done);
+            });
         });
 
         /* This test ensures that when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          */
          it('content actually changes', function(done) {
-            const feedCont = document.querySelector('.feed');
-            for( let i = 0; i < feedCont.children.length; i++) {
-                expect(feedCont.children[i].innerHTML === firstFeeds[i]).toBe(false);
+            const feedChildren = document.querySelector('.feed').querySelectorAll('.entry');
+            for( let i = 0; i < feedChildren.length; i++) {
+                expect(feedChildren[i].innerHTML === firstFeeds[i]).toBe(false);
             }
             done();
         });
